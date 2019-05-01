@@ -1,0 +1,41 @@
+label {
+  padding-top: 5px;
+}
+
+.loginForm {
+  margin-bottom: 10px;
+  border: 10px;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 20px;
+}
+input[type="checkbox"] {
+  transform: scale(1.25);
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-touched.ng-valid {
+  border: 1px solid green;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
+button {
+  width: 100px;
+}
+button[type="reset"] {
+  color: #fff;
+  background-color: #53755b;
+  border-color: #53755b;
+  float: right;
+}
+
+button[type="submit"] {
+  float: left;
+}
