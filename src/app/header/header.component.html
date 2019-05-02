@@ -47,11 +47,16 @@
         </div>
       </div>
     </form> -->
-    <li class="btn-group" dropdown>
+    <li class="btn-group" dropdown style="padding-right:60px">
       <a dropdownToggle role="button" class="dropdown-toggle">
         Accounts
       </a>
-      <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <ul
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        style="padding-right:20px"
+      >
         <li role="menuitem" [hidden]="isLoggedIn">
           <a
             class="dropdown-item glyphicon glyphicon-log-in"

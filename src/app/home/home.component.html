@@ -1,3 +1,34 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <h1>Hello {{ username }} ,</h1>
+  <br />
+  <h2>Welcome to Restaurant Table Booking App</h2>
+  <p>Explore Restaurant Here!</p>
+
+  <form [formGroup]="searchFrom" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <!-- Date of name div start -->
+      <div class="col-lg-8 col-md-8">
+        <div class="form-group search-box pull-left">
+          <input
+            type="text"
+            id="name"
+            formControlName="search"
+            placeholder="Search Here..."
+            class="form-control"
+          />
+        </div>
+        <div class="pull-right">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!searchFrom.valid"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr />
+  <app-restaurant-list></app-restaurant-list>
+</div>

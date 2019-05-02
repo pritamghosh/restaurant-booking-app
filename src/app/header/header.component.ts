@@ -9,6 +9,7 @@ import { AuthService } from "../services/auth.service";
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   constructor(private auth: AuthService) {
+    this.isLoggedIn = this.auth.isLoggedIn();
     this.auth.isLoggedIn$.subscribe(isLoggedinParam => {
       this.isLoggedIn = isLoggedinParam;
     });

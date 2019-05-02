@@ -1,0 +1,40 @@
+.search-box {
+  input {
+    // display: inline-block;
+    height: 50px;
+    width: 450px;
+    line-height: 1.25;
+    font-size: 20px;
+    //border: none;
+
+    :focus {
+      border: 1px solid rgb(3, 127, 252);
+    }
+    ::selection {
+      // border: none;
+      border: 1px solid rgb(3, 127, 252);
+    }
+  }
+  ::selection {
+    color: red;
+    background: yellow;
+  }
+  :focus {
+    border: 1px solid rgb(3, 127, 252);
+  }
+  :hover {
+    border: 1px solid rgb(3, 127, 252);
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+button {
+  height: 50px;
+  width: 125px;
+}
+.pull-left {
+  float: left;
+}

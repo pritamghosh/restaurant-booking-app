@@ -21,6 +21,9 @@ import { AuthGuard } from "./services/auth-guard.service";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from "./login/login.component";
 import { LoginService } from "./services/login.service";
+import { RestaurantListComponent } from "./home/restaurant-list/restaurant-list.component";
+import { RestaurantService } from "./services/restaurant.service";
+import { ObservableService } from "./services/observable.service";
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
   { path: "restaurant/:id", component: RestaurantDetailComponent },
@@ -47,7 +50,8 @@ export const ROUTES: Routes = [
     RestaurantDetailComponent,
     ProfileComponent,
     CreateRestaurantComponent,
-    LoginComponent
+    LoginComponent,
+    RestaurantListComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
@@ -57,7 +61,14 @@ export const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [RegistrationService, AuthGuard, AuthService, LoginService],
+  providers: [
+    RegistrationService,
+    AuthGuard,
+    AuthService,
+    LoginService,
+    RestaurantService,
+    ObservableService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

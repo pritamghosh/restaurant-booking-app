@@ -1,0 +1,23 @@
+<div *ngIf="restaurants.length > 0; else no_records_found">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Area</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Raiting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let restaurant of restaurants; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ restaurant.name }}</td>
+        <td>{{ restaurant.address }}</td>
+        <td>{{ restaurant.contact }}</td>
+        <td>{{ restaurant.ratingAvg | number }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #no_records_found><strong>No Records Found!</strong></ng-template>

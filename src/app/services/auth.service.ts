@@ -1,3 +1,5 @@
+const LOGIN_INFO_KEY = "loginInfo";
+
 import { Injectable } from "@angular/core";
 import { Subject, Observable } from "rxjs";
 import { Router } from "@angular/router";
@@ -14,12 +16,25 @@ export class AuthService {
     if (resp != null) {
       this.isLoggedInSubject.next(true);
       this.isAdminSubject.next(resp.roles.includes("ADMIN"));
-      localStorage.setItem("loginInfo", JSON.stringify(resp));
+      sessionStorage.setItem(LOGIN_INFO_KEY, JSON.stringify(resp));
     }
   }
 
+  isLoggedIn(): boolean {
+    let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
+    return resp != null;
+  }
+
+  getUser(): any {
+    let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
+    if (resp != null) {
+      return JSON.parse(resp);
+    }
+    return null;
+  }
+
   public clearContext() {
-    localStorage.removeItem("loginInfo");
+    sessionStorage.removeItem(LOGIN_INFO_KEY);
     this.isLoggedInSubject.next(false);
     this.isAdminSubject.next(false);
   }
