@@ -24,7 +24,7 @@ input.ng-touched.ng-valid {
 button {
   width: 100px;
 }
-button[type="reset"] {
+.reset {
   color: #fff;
   background-color: #53755b;
   border-color: #53755b;

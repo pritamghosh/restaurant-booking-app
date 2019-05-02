@@ -11,12 +11,14 @@ export class ModifyRestaurantComponent implements OnInit {
   @Input("restaurant") restaurant: any;
 
   restaurantForm: FormGroup;
-  rootValue: any;
   tables = new FormArray([]);
   constructor(private service: RestaurantService) {}
 
   ngOnInit() {
-    this.restaurantForm = new FormGroup({
+    this.restaurantForm = this.populateForm();
+  }
+  populateForm() {
+    return new FormGroup({
       name: new FormControl(this.restaurant.name, [
         Validators.required,
         this.required.bind(this)
@@ -37,10 +39,9 @@ export class ModifyRestaurantComponent implements OnInit {
       ]),
       tables: this.populateTable()
     });
-    this.rootValue = this.restaurantForm.value;
   }
-
   populateTable() {
+    this.tables = new FormArray([]);
     this.restaurant.tables.forEach(table => {
       this.tables.push(
         new FormGroup({
@@ -81,12 +82,7 @@ export class ModifyRestaurantComponent implements OnInit {
   }
 
   onReset() {
-    this.restaurantForm.reset();
-    console.log(this.rootValue);
-
-    this.restaurantForm.setValue(this.rootValue);
-    // this.tables = new FormArray([]);
-    // this.tables.push(this.getNewTable());
+    this.restaurantForm = this.populateForm();
   }
 
   deleteRestaurant(id: number) {
