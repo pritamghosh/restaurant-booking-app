@@ -21,8 +21,7 @@ export class BookingService {
           .subscribe(
             body => resolve(body),
             error => {
-              console.error(error);
-              reject();
+              reject(error);
             }
           );
       } else {

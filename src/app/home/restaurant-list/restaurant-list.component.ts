@@ -22,9 +22,9 @@ export class RestaurantListComponent implements OnInit {
   ngOnInit() {}
 
   searchRestaurant(key: string) {
-    this.service.seacrRestaurant(key).then(resp => {
-      this.restaurants = resp;
-      console.log(this.restaurants);
-    });
+    this.service
+      .seacrRestaurant(key)
+      .then(resp => (this.restaurants = resp))
+      .catch(err => console.error(err));
   }
 }

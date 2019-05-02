@@ -34,6 +34,7 @@ export class BookingsComponent implements OnInit {
       console.log(resp);
 
       this.bookings = resp;
-    });
+    }).catch(err=>console.error(err);
+    ;
   }
 }

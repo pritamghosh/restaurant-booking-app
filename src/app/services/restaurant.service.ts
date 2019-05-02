@@ -24,8 +24,7 @@ export class RestaurantService {
         this.http.get(SEARCH_API, { params: { key: key } }).subscribe(
           body => resolve(body),
           error => {
-            console.error(error);
-            reject();
+            reject(error);
           }
         );
       }
@@ -44,7 +43,6 @@ export class RestaurantService {
               resolve(body);
             },
             err => {
-              console.error(err);
               reject(err);
             }
           );
