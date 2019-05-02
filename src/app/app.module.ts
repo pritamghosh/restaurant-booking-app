@@ -16,7 +16,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegistrationService } from "./services/registration.service";
 import { HttpClientModule } from "@angular/common/http";
-import { CreateRestaurantComponent } from "./create-restaurant/create-restaurant.component";
+import { CreateRestaurantComponent } from "./admin/create-restaurant/create-restaurant.component";
 import { AuthGuard } from "./services/auth-guard.service";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from "./login/login.component";
@@ -27,9 +27,13 @@ import { ObservableService } from "./services/observable.service";
 import { AdminAuthGuard } from "./services/admin-auth-guard.service";
 import {
   NgbDatepickerModule,
-  NgbRatingModule
+  NgbRatingModule,
+  NgbTabsetModule
 } from "@ng-bootstrap/ng-bootstrap";
 import { BookingService } from "./services/booking.service";
+import { AdminComponent } from "./admin/admin.component";
+import { ManageRestaurantComponent } from './admin/manage-restaurant/manage-restaurant.component';
+import { ManageBookingComponent } from './admin/manage-booking/manage-booking.component';
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
   {
@@ -45,6 +49,11 @@ export const ROUTES: Routes = [
   },
   { path: "home", redirectTo: "" },
   { path: "profile/:username", component: ProfileComponent },
+  {
+    path: "admin",
+    canActivate: [AdminAuthGuard],
+    component: AdminComponent
+  },
   {
     path: "createRestaurant",
     canActivate: [AdminAuthGuard],
@@ -64,12 +73,16 @@ export const ROUTES: Routes = [
     ProfileComponent,
     CreateRestaurantComponent,
     LoginComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    AdminComponent,
+    ManageRestaurantComponent,
+    ManageBookingComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
     NgbDatepickerModule.forRoot(),
     NgbRatingModule.forRoot(),
+    NgbTabsetModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

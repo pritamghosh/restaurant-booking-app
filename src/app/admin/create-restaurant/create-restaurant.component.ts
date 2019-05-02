@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
-import { RestaurantService } from "../services/restaurant.service";
+import { RestaurantService } from "../../services/restaurant.service";
 
 @Component({
   selector: "app-create-restaurant",
