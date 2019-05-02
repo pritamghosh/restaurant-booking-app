@@ -1,12 +1,14 @@
 const SEARCH_API = "http://localhost:9053/restaurant/search";
 const ALL_API = "http://localhost:9053/restaurant/all";
+const CREATE_RESTAURANT_API = "http://localhost:9053/restaurant/all";
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class RestaurantService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   seacrRestaurant(key: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -26,6 +28,29 @@ export class RestaurantService {
             reject();
           }
         );
+      }
+    });
+  }
+
+  createRestaurant(restaurant: any): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      if (this.auth.isAdmin) {
+        this.http
+          .post(CREATE_RESTAURANT_API, {
+            params: { " access_token": this.auth.getToken() }
+          })
+          .subscribe(
+            body => {
+              resolve(body);
+            },
+            err => {
+              console.error(err);
+              reject(err);
+            }
+          );
+      } else {
+        console.error("Admin privilage required");
+        reject("Admin privilage required");
       }
     });
   }

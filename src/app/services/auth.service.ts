@@ -6,7 +6,10 @@ import { Router } from "@angular/router";
 import { ObservableService } from "./observable.service";
 @Injectable()
 export class AuthService {
-  constructor(private router: Router,private observableService:ObservableService) {}
+  constructor(
+    private router: Router,
+    private observableService: ObservableService
+  ) {}
 
   public savetoContext(resp: any) {
     if (resp != null) {
@@ -22,18 +25,25 @@ export class AuthService {
     return resp != null;
   }
 
-  isAdmin():boolean{
+  isAdmin(): boolean {
     let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
-    console.log(resp!=null && JSON.parse(resp).roles.includes("ADMIN"));
+    console.log(resp != null && JSON.parse(resp).roles.includes("ADMIN"));
     console.log(resp);
-    
-    return resp!=null && JSON.parse(resp).roles.includes("ADMIN");
+
+    return resp != null && JSON.parse(resp).roles.includes("ADMIN");
   }
 
   getUser(): any {
     let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
     if (resp != null) {
       return JSON.parse(resp);
+    }
+    return null;
+  }
+  getToken(): any {
+    let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
+    if (resp != null) {
+      return JSON.parse(resp).tokenInfo.access_token;
     }
     return null;
   }

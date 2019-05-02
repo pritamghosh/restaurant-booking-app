@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="restaurantForm">
   <h2>Please Enter Detils for New Restaurant!!</h2>
   <hr />
   <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
@@ -17,7 +17,7 @@
       </div>
       <div class="col-lg-4 col-sm-12 ">
         <div class="form-group">
-          <label class="required" for="email">Contact No.</label>
+          <label class="required" for="contact">Contact No.</label>
           <input
             type="text"
             id="contact"
@@ -29,7 +29,7 @@
       </div>
       <div class="col-lg-4 col-sm-12 ">
         <div class="form-group">
-          <label class="required" for="email">Address</label>
+          <label class="required" for="address">Address</label>
           <input
             type="text"
             id="address"
@@ -39,38 +39,86 @@
           />
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 " *ngFor="let table of tables">
-        <div class="row">
-          <div class="col-lg-4 col-sm-12 form-group">
-            <label class="required" for="email">Seating Capacity</label>
-            <input
-              type="text"
-              id="seatingCapacity"
-              formControlName="col-lg-4 col-sm-12"
-              placeholder="Enter Seateing capacity per table..."
-              class="form-control"
-            />
+      <div
+        class="col-lg-12 col-sm-12 "
+        formArrayName="tables"
+        *ngFor="let table of tables.controls; let i = index"
+      >
+        <div class="row" [formGroupName]="i">
+          <div class="col-lg-10 col-sm-12">
+            <div class="row">
+              <div class="col-lg-4 col-sm-12 form-group">
+                <label class="required" for="seatingCapacity" [hidden]="i != 0"
+                  >Seating Capacity</label
+                >
+                <input
+                  type="number"
+                  id="seatingCapacity"
+                  formControlName="seatingCapacity"
+                  placeholder="Enter Seateing capacity per table..."
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-4 col-sm-12 form-group">
+                <label class="required" for="totalNoOfTables" [hidden]="i != 0"
+                  >Total no of Tables</label
+                >
+                <input
+                  type="number"
+                  id="totalNoOfTables"
+                  formControlName="totalNoOfTables"
+                  placeholder="Enter total No of tables..."
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-4 col-sm-12 form-group">
+                <label class="required" for="chargesPerTable" [hidden]="i != 0"
+                  >Charges per Table</label
+                >
+                <input
+                  type="number"
+                  id="chargesPerTable"
+                  formControlName="chargesPerTable"
+                  placeholder="Enter charges per table..."
+                  class="form-control"
+                />
+              </div>
+            </div>
           </div>
-          <div class="col-lg-4 col-sm-12 form-group">
-            <label class="required" for="email">Total no of Tables</label>
-            <input
-              type="text"
-              id="totalNoOfTables"
-              formControlName="col-lg-4 col-sm-12"
-              placeholder="Enter total No of tables..."
-              class="form-control"
-            />
+          <div class="col-lg-2 col-sm-12 form-group " style="text-align: right">
+            <label [hidden]="i != 0" for="del" style="width: 100%">
+              &nbsp; &nbsp;
+            </label>
+            <button
+              type="button"
+              id="del"
+              class="btn btn-danger form-control"
+              style="width: 100px"
+              (click)="deleteRow(i)"
+              [disabled]="tables.controls.length < 2"
+            >
+              Delete
+            </button>
           </div>
-          <div class="col-lg-4 col-sm-12 form-group">
-            <label class="required" for="email">Charges per Table</label>
-            <input
-              type="text"
-              id="chargesPerTable"
-              formControlName="col-lg-4 col-sm-12"
-              placeholder="Enter charges per table..."
-              class="form-control"
-            />
-          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <button class="btn btn-info" type="button" (click)="addRow()">
+          Add Table
+        </button>
+      </div>
+      <div class="col-lg-12" style="margin-top: 15px">
+        <div class="pull-left">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!restaurantForm.valid"
+          >
+            Submit
+          </button>
+        </div>
+        <div class="pull-right">
+          <button type="reset" class="btn" (click)="onReset()">Reset</button>
         </div>
       </div>
     </div>
