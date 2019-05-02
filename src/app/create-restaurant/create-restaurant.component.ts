@@ -56,6 +56,9 @@ export class CreateRestaurantComponent implements OnInit {
 
   onSubmit() {
     console.log(this.restaurantForm.value);
+    this.service
+      .createRestaurant(this.restaurantForm.value)
+      .catch(err => console.error(err));
   }
   addRow() {
     this.tables.push(this.getNewTable());

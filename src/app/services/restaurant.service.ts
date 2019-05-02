@@ -1,6 +1,6 @@
 const SEARCH_API = "http://localhost:9053/restaurant/search";
 const ALL_API = "http://localhost:9053/restaurant/all";
-const CREATE_RESTAURANT_API = "http://localhost:9053/restaurant/all";
+const CREATE_RESTAURANT_API = "http://localhost:9053/restaurant/add";
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -36,7 +36,7 @@ export class RestaurantService {
     return new Promise<any>((resolve, reject) => {
       if (this.auth.isAdmin) {
         this.http
-          .post(CREATE_RESTAURANT_API, {
+          .post(CREATE_RESTAURANT_API, restaurant, {
             params: { " access_token": this.auth.getToken() }
           })
           .subscribe(
