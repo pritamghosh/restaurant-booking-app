@@ -27,6 +27,11 @@ export class CreateRestaurantComponent implements OnInit {
         Validators.required,
         this.required.bind(this)
       ]),
+
+      ratingAvg: new FormControl(null, [
+        Validators.required,
+        Validators.pattern("[0-9]+(.[0-9]{0,2})")
+      ]),
       tables: this.tables
     });
     this.tables.push(this.getNewTable());

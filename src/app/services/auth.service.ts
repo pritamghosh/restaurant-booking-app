@@ -13,10 +13,9 @@ export class AuthService {
 
   public savetoContext(resp: any) {
     if (resp != null) {
-      this.observableService.isLoggedInSubject.next(true);
-      console.log(resp.roles.includes("ADMIN"));
-      this.observableService.isAdminSubject.next(resp.roles.includes("ADMIN"));
       sessionStorage.setItem(LOGIN_INFO_KEY, JSON.stringify(resp));
+      this.observableService.isLoggedInSubject.next(true);
+      this.observableService.isAdminSubject.next(resp.roles.includes("ADMIN"));
     }
   }
 
@@ -27,13 +26,11 @@ export class AuthService {
 
   isAdmin(): boolean {
     let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
-    console.log(resp != null && JSON.parse(resp).roles.includes("ADMIN"));
-    console.log(resp);
-
     return resp != null && JSON.parse(resp).roles.includes("ADMIN");
   }
 
   getUser(): any {
+    sessionStorage.getItem(LOGIN_INFO_KEY);
     let resp = sessionStorage.getItem(LOGIN_INFO_KEY);
     if (resp != null) {
       return JSON.parse(resp);

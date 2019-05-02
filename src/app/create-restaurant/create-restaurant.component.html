@@ -3,7 +3,7 @@
   <hr />
   <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col-lg-4 col-sm-12 ">
+      <div class="col-lg-6 col-sm-12 ">
         <div class="form-group">
           <label class="required" for="email">Name</label>
           <input
@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 ">
+      <div class="col-lg-6 col-sm-12 ">
         <div class="form-group">
           <label class="required" for="contact">Contact No.</label>
           <input
@@ -27,7 +27,7 @@
           />
         </div>
       </div>
-      <div class="col-lg-4 col-sm-12 ">
+      <div class="col-lg-9 col-sm-12 ">
         <div class="form-group">
           <label class="required" for="address">Address</label>
           <input
@@ -35,6 +35,18 @@
             id="address"
             formControlName="address"
             placeholder="Enter Address of Restaurant..."
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-12 ">
+        <div class="form-group">
+          <label class="required" for="ratingAvg">Average Raiting</label>
+          <input
+            type="text"
+            id="ratingAvg"
+            formControlName="ratingAvg"
+            placeholder="Enter Raiting of Restaurant..."
             class="form-control"
           />
         </div>

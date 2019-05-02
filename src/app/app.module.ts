@@ -25,7 +25,10 @@ import { RestaurantListComponent } from "./home/restaurant-list/restaurant-list.
 import { RestaurantService } from "./services/restaurant.service";
 import { ObservableService } from "./services/observable.service";
 import { AdminAuthGuard } from "./services/admin-auth-guard.service";
-import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import {
+  NgbDatepickerModule,
+  NgbRatingModule
+} from "@ng-bootstrap/ng-bootstrap";
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
   { path: "restaurant/:id", component: RestaurantDetailComponent },
@@ -58,6 +61,7 @@ export const ROUTES: Routes = [
   imports: [
     BsDropdownModule.forRoot(),
     NgbDatepickerModule.forRoot(),
+    NgbRatingModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

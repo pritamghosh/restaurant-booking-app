@@ -19,13 +19,18 @@ export class HomeComponent implements OnInit {
     private observableService: ObservableService,
     private calendar: NgbCalendar
   ) {
+    this.populateUserName();
+    this.observableService.isLoggedInSubject.subscribe(value => {
+      this.populateUserName();
+    });
+  }
+  populateUserName() {
     if (this.auth.getUser() != null) {
       this.username = this.auth.getUser().name;
     } else {
       this.username = "User";
     }
   }
-
   onSubmit() {
     this.observableService.searchKeySubject.next(
       this.searchFrom.get("search").value
