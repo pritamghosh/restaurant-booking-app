@@ -6,4 +6,5 @@ export class ObservableService {
   searchKeySubject = new Subject<string>();
   isLoggedInSubject = new Subject<boolean>();
   isAdminSubject = new Subject<boolean>();
+  manageRestaurantIdSubject = new Subject<any>();
 }

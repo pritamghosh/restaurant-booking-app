@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.service.login(this.loginForm.value).then(resp => {
-      this.router.navigateByUrl(this.returnUrl);
+      this.router
+        .navigateByUrl(this.returnUrl)
+        .catch(err => console.error(err));
     });
   }
 }

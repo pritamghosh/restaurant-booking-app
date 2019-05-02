@@ -16,8 +16,7 @@ export class LoginService {
           resolve(true);
         },
         error => {
-          console.error(error);
-          reject();
+          reject(error);
         }
       );
     });

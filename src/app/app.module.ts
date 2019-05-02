@@ -28,12 +28,14 @@ import { AdminAuthGuard } from "./services/admin-auth-guard.service";
 import {
   NgbDatepickerModule,
   NgbRatingModule,
-  NgbTabsetModule
+  NgbTabsetModule,
+  NgbAccordionModule
 } from "@ng-bootstrap/ng-bootstrap";
 import { BookingService } from "./services/booking.service";
 import { AdminComponent } from "./admin/admin.component";
-import { ManageRestaurantComponent } from './admin/manage-restaurant/manage-restaurant.component';
-import { ManageBookingComponent } from './admin/manage-booking/manage-booking.component';
+import { ManageRestaurantComponent } from "./admin/manage-restaurant/manage-restaurant.component";
+import { ManageBookingComponent } from "./admin/manage-booking/manage-booking.component";
+import { ModifyRestaurantComponent } from "./admin/manage-restaurant/modify-restaurant/modify-restaurant.component";
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
   {
@@ -76,13 +78,15 @@ export const ROUTES: Routes = [
     RestaurantListComponent,
     AdminComponent,
     ManageRestaurantComponent,
-    ManageBookingComponent
+    ManageBookingComponent,
+    ModifyRestaurantComponent
   ],
   imports: [
     BsDropdownModule.forRoot(),
     NgbDatepickerModule.forRoot(),
     NgbRatingModule.forRoot(),
     NgbTabsetModule.forRoot(),
+    NgbAccordionModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

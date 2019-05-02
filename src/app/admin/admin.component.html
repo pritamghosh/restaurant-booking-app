@@ -1,17 +1,21 @@
-<ngb-tabset>
-  <ngb-tab title="Create Restaurant">
-    <ng-template ngbTabContent
-      ><app-create-restaurant></app-create-restaurant>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Manage Restaurant">
-    <ng-template ngbTabContent>
-      <app-manage-restaurant></app-manage-restaurant>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Manage Bookings">
-    <ng-template ngbTabContent>
-      <app-manage-booking></app-manage-booking>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+<div class="container">
+  <ngb-tabset>
+    <ngb-tab title="Create Restaurant">
+      <ng-template ngbTabContent
+        ><app-create-restaurant></app-create-restaurant>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Manage Restaurant">
+      <ng-template ngbTabContent>
+        <app-manage-restaurant
+          (manageRestaurant)="manageRestaurant($event)"
+        ></app-manage-restaurant>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Manage Bookings">
+      <ng-template ngbTabContent>
+        <app-manage-booking></app-manage-booking>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

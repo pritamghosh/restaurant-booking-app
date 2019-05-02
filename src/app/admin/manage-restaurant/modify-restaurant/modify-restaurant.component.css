@@ -15,12 +15,7 @@ input.ng-touched.ng-invalid {
 input.ng-touched.ng-valid {
   border: 1px solid green;
 }
-.create {
-  border-style: solid;
-  border-color: silver;
-  border-width: 1px;
-  border-radius: 5px;
-}
+
 .required:after {
   content: " *";
   color: red;
@@ -38,4 +33,11 @@ button[type="reset"] {
 
 button[type="submit"] {
   float: left;
+}
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
 }

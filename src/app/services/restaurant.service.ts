@@ -36,7 +36,7 @@ export class RestaurantService {
       if (this.auth.isAdmin) {
         this.http
           .post(CREATE_RESTAURANT_API, restaurant, {
-            params: { " access_token": this.auth.getToken() }
+            params: { access_token: this.auth.getToken() }
           })
           .subscribe(
             body => {

@@ -1,3 +1,14 @@
-<p>
-  manage-restaurant works!
-</p>
+<ngb-accordion [closeOthers]="true" activeIds="restaurant[0].name">
+  <div *ngFor="let restaurant of restaurants">
+    <ngb-panel
+      id="{{ restaurant.name }}"
+      title="{{ restaurant.name }} - {{ restaurant.address }}"
+    >
+      <ng-template ngbPanelContent>
+        <app-modify-restaurant
+          [restaurant]="restaurant"
+        ></app-modify-restaurant>
+      </ng-template>
+    </ngb-panel>
+  </div>
+</ngb-accordion>

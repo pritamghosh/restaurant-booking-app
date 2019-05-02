@@ -16,7 +16,7 @@ export class BookingService {
       if (this.auth.isLoggedIn) {
         this.http
           .get(GET_BOOKING_API, {
-            params: { " access_token": this.auth.getToken() }
+            params: { access_token: this.auth.getToken() }
           })
           .subscribe(
             body => resolve(body),

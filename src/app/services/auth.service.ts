@@ -14,6 +14,7 @@ export class AuthService {
   public savetoContext(resp: any) {
     if (resp != null) {
       sessionStorage.setItem(LOGIN_INFO_KEY, JSON.stringify(resp));
+      console.log(resp);
       this.observableService.isLoggedInSubject.next(true);
       this.observableService.isAdminSubject.next(resp.roles.includes("ADMIN"));
     }

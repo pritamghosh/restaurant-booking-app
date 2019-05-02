@@ -30,7 +30,7 @@ export class CreateRestaurantComponent implements OnInit {
 
       ratingAvg: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[0-9]+(.[0-9]{0,2})")
+        Validators.pattern("[0-9]+(.{0,1}[0-9]{0,2})")
       ]),
       tables: this.tables
     });
@@ -65,6 +65,10 @@ export class CreateRestaurantComponent implements OnInit {
     console.log(this.restaurantForm.value);
     this.service
       .createRestaurant(this.restaurantForm.value)
+      .then(resp => {
+        window.alert("Restaurant Has Been Created!!");
+        this.onReset();
+      })
       .catch(err => console.error(err));
   }
   addRow() {
