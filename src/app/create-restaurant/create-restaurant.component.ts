@@ -52,6 +52,8 @@ export class CreateRestaurantComponent implements OnInit {
 
   onReset() {
     this.restaurantForm.reset();
+    this.tables = new FormArray([]);
+    this.tables.push(this.getNewTable());
   }
 
   onSubmit() {

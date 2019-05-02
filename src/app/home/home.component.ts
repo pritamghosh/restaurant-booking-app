@@ -3,6 +3,7 @@ import { AuthService } from "../services/auth.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Subject } from "rxjs";
 import { ObservableService } from "../services/observable.service";
+import { NgbDateStruct, NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-home",
@@ -11,8 +12,13 @@ import { ObservableService } from "../services/observable.service";
 })
 export class HomeComponent implements OnInit {
   username = "User";
-  searchFrom : FormGroup
-  constructor(private auth: AuthService, private observableService: ObservableService) {
+  searchFrom: FormGroup;
+  model: NgbDateStruct;
+  constructor(
+    private auth: AuthService,
+    private observableService: ObservableService,
+    private calendar: NgbCalendar
+  ) {
     if (this.auth.getUser() != null) {
       this.username = this.auth.getUser().name;
     } else {
@@ -20,12 +26,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onSubmit(){
-    this.observableService.searchKeySubject.next(this.searchFrom.get('search').value);
+  onSubmit() {
+    this.observableService.searchKeySubject.next(
+      this.searchFrom.get("search").value
+    );
   }
 
   ngOnInit() {
     this.searchFrom = new FormGroup({
-      search: new FormControl(null, [        Validators.required      ])});
+      search: new FormControl(null, [Validators.required])
+    });
   }
 }
