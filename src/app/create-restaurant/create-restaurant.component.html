@@ -1,3 +1,78 @@
-<p>
-  create-restaurant works!
-</p>
+<div class="container">
+  <h2>Please Enter Detils for New Restaurant!!</h2>
+  <hr />
+  <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12 ">
+        <div class="form-group">
+          <label class="required" for="email">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            placeholder="Enter Name of Restaurant..."
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12 ">
+        <div class="form-group">
+          <label class="required" for="email">Contact No.</label>
+          <input
+            type="text"
+            id="contact"
+            formControlName="contact"
+            placeholder="Enter Contact No of Restaurant..."
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12 ">
+        <div class="form-group">
+          <label class="required" for="email">Address</label>
+          <input
+            type="text"
+            id="address"
+            formControlName="address"
+            placeholder="Enter Address of Restaurant..."
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12 " *ngFor="let table of tables">
+        <div class="row">
+          <div class="col-lg-4 col-sm-12 form-group">
+            <label class="required" for="email">Seating Capacity</label>
+            <input
+              type="text"
+              id="seatingCapacity"
+              formControlName="col-lg-4 col-sm-12"
+              placeholder="Enter Seateing capacity per table..."
+              class="form-control"
+            />
+          </div>
+          <div class="col-lg-4 col-sm-12 form-group">
+            <label class="required" for="email">Total no of Tables</label>
+            <input
+              type="text"
+              id="totalNoOfTables"
+              formControlName="col-lg-4 col-sm-12"
+              placeholder="Enter total No of tables..."
+              class="form-control"
+            />
+          </div>
+          <div class="col-lg-4 col-sm-12 form-group">
+            <label class="required" for="email">Charges per Table</label>
+            <input
+              type="text"
+              id="chargesPerTable"
+              formControlName="col-lg-4 col-sm-12"
+              placeholder="Enter charges per table..."
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

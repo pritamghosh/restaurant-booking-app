@@ -35,18 +35,22 @@ export class CreateRestaurantComponent implements OnInit {
     return new FormGroup({
       seatingCapacity: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[0-9-]")
+        Validators.pattern("[0-9]")
       ]),
       totalNoOfTables: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[0-9-]")
+        Validators.pattern("[0-9]")
       ]),
 
       chargesPerTable: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[0-9-]")
+        Validators.pattern("[0-9]")
       ])
     });
+  }
+
+  addRow(){
+    this.tables.push(this.getNewTable())
   }
 
   required(control: FormControl): { [s: string]: boolean } {

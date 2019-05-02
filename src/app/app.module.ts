@@ -24,6 +24,7 @@ import { LoginService } from "./services/login.service";
 import { RestaurantListComponent } from "./home/restaurant-list/restaurant-list.component";
 import { RestaurantService } from "./services/restaurant.service";
 import { ObservableService } from "./services/observable.service";
+import { AdminAuthGuard } from "./services/admin-auth-guard.service";
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
   { path: "restaurant/:id", component: RestaurantDetailComponent },
@@ -34,7 +35,7 @@ export const ROUTES: Routes = [
   { path: "profile/:username", component: ProfileComponent },
   {
     path: "createRestaurant",
-    canActivate: [AuthGuard],
+    canActivate: [AdminAuthGuard],
     component: CreateRestaurantComponent
   }
 ];
@@ -65,6 +66,7 @@ export const ROUTES: Routes = [
     RegistrationService,
     AuthGuard,
     AuthService,
+    AdminAuthGuard,
     LoginService,
     RestaurantService,
     ObservableService

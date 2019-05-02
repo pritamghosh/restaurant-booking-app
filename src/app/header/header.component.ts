@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
+import { ObservableService } from "../services/observable.service";
 
 @Component({
   selector: "app-header",
@@ -8,9 +9,9 @@ import { AuthService } from "../services/auth.service";
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService,private observableService:ObservableService) {
     this.isLoggedIn = this.auth.isLoggedIn();
-    this.auth.isLoggedIn$.subscribe(isLoggedinParam => {
+    this.observableService.isLoggedInSubject.subscribe(isLoggedinParam => {
       this.isLoggedIn = isLoggedinParam;
     });
   }

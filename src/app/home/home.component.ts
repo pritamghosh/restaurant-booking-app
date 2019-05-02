@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.searchFrom = new FormGroup({
-      search: new FormControl(null, [
-        Validators.required
-      ])
+      search: new FormControl(null, [        Validators.required      ])});
   }
 }
