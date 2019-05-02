@@ -30,11 +30,12 @@ export class BookingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getBookings().then(resp => {
-      console.log(resp);
-
-      this.bookings = resp;
-    }).catch(err=>console.error(err);
-    ;
+    this.service
+      .getBookings()
+      .then(resp => {
+        console.log(resp);
+        this.bookings = resp;
+      })
+      .catch(err => console.error(err));
   }
 }
