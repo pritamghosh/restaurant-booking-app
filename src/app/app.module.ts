@@ -29,12 +29,20 @@ import {
   NgbDatepickerModule,
   NgbRatingModule
 } from "@ng-bootstrap/ng-bootstrap";
+import { BookingService } from "./services/booking.service";
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
-  { path: "restaurant/:id", component: RestaurantDetailComponent },
+  {
+    path: "restaurant/:id",
+    component: RestaurantDetailComponent
+  },
   { path: "signUp", component: RegistrationComponent },
   { path: "login", component: LoginComponent },
-  { path: "bookings", component: BookingsComponent },
+  {
+    path: "bookings",
+    canActivate: [AuthGuard],
+    component: BookingsComponent
+  },
   { path: "home", redirectTo: "" },
   { path: "profile/:username", component: ProfileComponent },
   {
@@ -74,6 +82,7 @@ export const ROUTES: Routes = [
     AuthService,
     AdminAuthGuard,
     LoginService,
+    BookingService,
     RestaurantService,
     ObservableService
   ],
