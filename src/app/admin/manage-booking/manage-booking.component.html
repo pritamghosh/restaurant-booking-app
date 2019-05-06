@@ -1,3 +1,122 @@
-<p>
-  manage-booking works!
-</p>
+<div class="container">
+  <h1>Hello {{ username }} ,</h1>
+  <br />
+  <div *ngIf="bookings.length > 0; else no_records_found">
+    <h3>Find your all booking mentionioned in below table!!</h3>
+    <hr />
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Restaurant</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let booking of getbookings; index as i"
+          (click)="showBookingDetails(i)"
+          [ngClass]="[booking.bookingStatus | statusClass]"
+          style="cursor: pointer;"
+        >
+          <th scope="row">{{ getIndex(i) }}</th>
+          <td>{{ booking.reservationDate | date: mediumDate }}</td>
+          <td>{{ booking.restaurant.name }}</td>
+          <td>{{ booking.bookingStatus | status }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      *ngIf="bookings.length > pageSize"
+      class="d-flex justify-content-between p-2"
+    >
+      <ngb-pagination
+        [collectionSize]="bookings.length"
+        [(page)]="page"
+        [pageSize]="pageSize"
+      >
+      </ngb-pagination>
+    </div>
+  </div>
+  <ng-template #no_records_found
+    ><strong>No Records Found!</strong></ng-template
+  >
+  <hr />
+  <div>
+    <div *ngIf="booking != null && booking.restaurant != undefined">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-left">
+            <h1>{{ booking.restaurant.name }}</h1>
+            <p class="list-group-item-text">
+              Address: {{ booking.restaurant.address }}
+            </p>
+            <p class="list-group-item-text">
+              Contact: {{ booking.restaurant.contact }}
+            </p>
+            <p class="list-group-item-text">
+              Booking Status: {{ booking.bookingStatus | status }}
+            </p>
+          </div>
+          <div class="pull-right">
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="onClose()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr />
+        <h3>
+          <strong>
+            Booking Details on {{ booking.reservationDate | date: mediumDate }}
+          </strong>
+        </h3>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Seacting Capacity</th>
+            <th>Charges Per Table</th>
+            <th>No of Selected Tables</th>
+            <th>Total Charges</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let table of booking.bookedTable">
+            <td>{{ table.table.seatingCapacity }}</td>
+            <td>{{ table.table.chargesPerTable }}</td>
+            <td>{{ table.noOfTables }}</td>
+            <td>
+              {{ multiply(table.noOfTables, table.table.chargesPerTable) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-bottom:5px">
+        <button
+          type="button"
+          class="btn btn-success pull-left action"
+          (click)="onComplete()"
+          [disabled]="!(booking.bookingStatus === 'CONF')"
+        >
+          Complete Booking
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning pull-right action"
+          (click)="onCancel()"
+          [disabled]="!(booking.bookingStatus === 'CONF')"
+        >
+          Cancel Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

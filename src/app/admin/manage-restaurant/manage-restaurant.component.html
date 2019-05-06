@@ -1,14 +1,19 @@
-<ngb-accordion [closeOthers]="true" activeIds="restaurant[0].name">
-  <div *ngFor="let restaurant of restaurants">
-    <ngb-panel
-      id="{{ restaurant.name }}"
-      title="{{ restaurant.name }} - {{ restaurant.address }}"
-    >
-      <ng-template ngbPanelContent>
-        <app-modify-restaurant
-          [restaurant]="restaurant"
-        ></app-modify-restaurant>
-      </ng-template>
-    </ngb-panel>
-  </div>
-</ngb-accordion>
+<div *ngIf="restaurants.length > 0; else no_records_found">
+  <ngb-accordion [closeOthers]="true" activeIds="{{ restaurants[0].id }}">
+    <div *ngFor="let restaurant of restaurants; index as i">
+      <ngb-panel
+        id="{{ restaurant.name }}"
+        title="{{ restaurant.name }} - {{ restaurant.address }}"
+      >
+        <ng-template ngbPanelContent>
+          <app-modify-restaurant
+            [restaurant]="restaurant"
+            [index]="i"
+            (deleteRestaurant)="deteRestaurant($event)"
+          ></app-modify-restaurant>
+        </ng-template>
+      </ngb-panel>
+    </div>
+  </ngb-accordion>
+</div>
+<ng-template #no_records_found><strong>No Records Found!</strong></ng-template>

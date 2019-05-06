@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Subject } from "rxjs";
 import { ObservableService } from "../services/observable.service";
-import { NgbDateStruct, NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
+import {
+  NgbDateStruct,
+  NgbCalendar,
+  NgbDatepickerConfig
+} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-home",
@@ -17,8 +20,19 @@ export class HomeComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private observableService: ObservableService,
-    private calendar: NgbCalendar
+    private calendar: NgbCalendar,
+    private config: NgbDatepickerConfig
   ) {
+    this.model = this.calendar.getToday();
+    let currentDate = new Date();
+    this.config.minDate = {
+      year: currentDate.getFullYear(),
+      month: currentDate.getMonth() + 1,
+      day: currentDate.getDate()
+    };
+    this.config.maxDate = { year: 2099, month: 12, day: 31 };
+
+    this.config.outsideDays = "hidden";
     this.populateUserName();
     this.observableService.isLoggedInSubject.subscribe(value => {
       this.populateUserName();
@@ -35,6 +49,7 @@ export class HomeComponent implements OnInit {
     this.observableService.searchKeySubject.next(
       this.searchFrom.get("search").value
     );
+    console.log(this.model);
   }
 
   ngOnInit() {

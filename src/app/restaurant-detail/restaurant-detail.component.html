@@ -1,3 +1,128 @@
-<p>
-  restaurant-detail works!
-</p>
+<div class="container">
+  <div *ngIf="restaurant != undefined; else notFound">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pull-left">
+          <h1>{{ restaurant.name }}</h1>
+          <p class="list-group-item-text">Address: {{ restaurant.address }}</p>
+          <p class="list-group-item-text">Contact: {{ restaurant.contact }}</p>
+          <p class="list-group-item-text">
+            Raitings: {{ restaurant.ratingAvg }}
+          </p>
+        </div>
+        <div class="pull-right">
+          <div class="modify">
+            <div class=" form-group">
+              <form class="form-inline">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input
+                      class="form-control cal"
+                      placeholder="yyyy-mm-dd"
+                      name="dp"
+                      [(ngModel)]="dateModel"
+                      ngbDatepicker
+                      #d="ngbDatepicker"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-secondary calendar"
+                        (click)="d.toggle()"
+                        type="button"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="pull-right">
+              <button
+                type="button"
+                class="btn btn-primary modify"
+                (click)="onModifySearch(changeDate)"
+              >
+                Modify Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <hr />
+      <h3>
+        <strong>
+          Availability Details on {{ restaurant.queryDate | date: "dd-MMM-yy" }}
+        </strong>
+      </h3>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Seacting Capacity</th>
+          <th>Charges Per Table</th>
+          <th>Available Table Nos</th>
+          <th>Add/Remove</th>
+          <th>No of Selected Tables</th>
+          <th>Total Charges</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let table of restaurant['tables']">
+          <td>{{ table.seatingCapacity }}</td>
+          <td>{{ table.chargesPerTable }}</td>
+          <td>{{ table.avaiableNoOfTables }}</td>
+          <td>
+            <div>
+              <button
+                class="btn btn-success"
+                (click)="onAdd(table)"
+                [disabled]="
+                  table.avaiableNoOfTables == table.noOfSelectedTables
+                "
+              >
+                +
+              </button>
+              <button
+                class="btn btn-danger"
+                (click)="onDelete(table)"
+                [disabled]="table.noOfSelectedTables == 0"
+              >
+                -
+              </button>
+            </div>
+          </td>
+          <td>{{ table.noOfSelectedTables }}</td>
+          <td>
+            {{ multiply(table.noOfSelectedTables, table.chargesPerTable) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <button
+        type="button"
+        class="btn btn-success pull-left action"
+        (click)="onBook()"
+        [disabled]="isDisabled()"
+      >
+        Book
+      </button>
+      <button
+        type="reset"
+        class="btn btn-warning pull-right action"
+        (click)="onReset()"
+        [disabled]="isDisabled()"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+  <ng-template #notFound>
+    <div>
+      <h4>
+        Restaurant Not Found
+      </h4>
+    </div>
+  </ng-template>
+</div>

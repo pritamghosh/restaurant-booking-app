@@ -19,4 +19,8 @@ export class ManageRestaurantComponent implements OnInit {
       .then(resp => (this.restaurants = resp))
       .catch(err => console.error(err));
   }
+
+  deteRestaurant(event: any) {
+    this.restaurants.splice(event.index);
+  }
 }

@@ -29,17 +29,20 @@ import {
   NgbDatepickerModule,
   NgbRatingModule,
   NgbTabsetModule,
-  NgbAccordionModule
+  NgbAccordionModule,
+  NgbPaginationModule
 } from "@ng-bootstrap/ng-bootstrap";
 import { BookingService } from "./services/booking.service";
 import { AdminComponent } from "./admin/admin.component";
 import { ManageRestaurantComponent } from "./admin/manage-restaurant/manage-restaurant.component";
 import { ManageBookingComponent } from "./admin/manage-booking/manage-booking.component";
 import { ModifyRestaurantComponent } from "./admin/manage-restaurant/modify-restaurant/modify-restaurant.component";
+import { StatusPipe } from "./pipes/status.pipe";
+import { StatusClassPipe } from "./pipes/status-class.pipe";
 export const ROUTES: Routes = [
   { path: "", component: HomeComponent },
   {
-    path: "restaurant/:id",
+    path: "restaurant/:id/:queryDate",
     component: RestaurantDetailComponent
   },
   { path: "signUp", component: RegistrationComponent },
@@ -50,7 +53,7 @@ export const ROUTES: Routes = [
     component: BookingsComponent
   },
   { path: "home", redirectTo: "" },
-  { path: "profile/:username", component: ProfileComponent },
+  { path: "profile", component: ProfileComponent },
   {
     path: "admin",
     canActivate: [AdminAuthGuard],
@@ -79,7 +82,9 @@ export const ROUTES: Routes = [
     AdminComponent,
     ManageRestaurantComponent,
     ManageBookingComponent,
-    ModifyRestaurantComponent
+    ModifyRestaurantComponent,
+    StatusPipe,
+    StatusClassPipe
   ],
   imports: [
     BsDropdownModule.forRoot(),
@@ -87,6 +92,7 @@ export const ROUTES: Routes = [
     NgbRatingModule.forRoot(),
     NgbTabsetModule.forRoot(),
     NgbAccordionModule.forRoot(),
+    NgbPaginationModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

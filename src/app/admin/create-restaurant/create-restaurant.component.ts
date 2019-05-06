@@ -41,7 +41,8 @@ export class CreateRestaurantComponent implements OnInit {
     return new FormGroup({
       seatingCapacity: new FormControl(null, [
         Validators.required,
-        Validators.pattern("[0-9]{1,}")
+        Validators.pattern("[0-9]{1,}"),
+        this.duplicateRow.bind(this)
       ]),
       totalNoOfTables: new FormControl(null, [
         Validators.required,
@@ -62,7 +63,6 @@ export class CreateRestaurantComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.restaurantForm.value);
     this.service
       .createRestaurant(this.restaurantForm.value)
       .then(resp => {
@@ -84,6 +84,33 @@ export class CreateRestaurantComponent implements OnInit {
   required(control: FormControl): { [s: string]: boolean } {
     if (control.value == null || control.value.trim() === "") {
       return { required: true };
+    }
+    return null;
+  }
+
+  duplicateRow(control: FormControl) {
+    let freqMap = new Map<number, number>();
+
+    this.tables.controls.forEach(ctrl => {
+      let val = ctrl.get("seatingCapacity").value;
+      if (freqMap.get(val) == null) {
+        freqMap.set(val, 1);
+      } else {
+        freqMap.set(val, freqMap.get(val) + 1);
+      }
+    });
+    this.tables.controls.forEach(ctrl => {
+      let val = ctrl.get("seatingCapacity").value;
+      if (val == null || val == "") {
+        ctrl.get("seatingCapacity").setErrors({ required: true });
+      } else if (freqMap.get(val) > 1) {
+        ctrl.get("seatingCapacity").setErrors({ duplicateRow: true });
+      } else {
+        ctrl.get("seatingCapacity").setErrors(null);
+      }
+    });
+    if (freqMap.get(control.value) > 1) {
+      return { duplicateRow: true };
     }
     return null;
   }
