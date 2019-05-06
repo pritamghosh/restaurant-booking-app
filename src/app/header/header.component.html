@@ -74,13 +74,6 @@
           </a>
         </li>
         <li role="menuitem" [hidden]="!isLoggedIn">
-          <a class="dropdown-item" href="#">Your Profile</a>
-        </li>
-        <li role="menuitem" [hidden]="!isLoggedIn">
-          <a class="dropdown-item" href="#">Your Bookings</a>
-        </li>
-        <li class="divider dropdown-divider" [hidden]="!isLoggedIn"></li>
-        <li role="menuitem" [hidden]="!isLoggedIn">
           <a class="dropdown-item" (click)="signOut()">Sign Out</a>
         </li>
       </ul>

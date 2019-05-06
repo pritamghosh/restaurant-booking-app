@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { RegistrationService } from "../services/registration.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-registration",
@@ -9,7 +10,7 @@ import { RegistrationService } from "../services/registration.service";
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
-  constructor(private service: RegistrationService) {}
+  constructor(private service: RegistrationService, private router: Router) {}
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -48,7 +49,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.signUp(this.registrationForm.value);
+    this.service
+      .signUp(this.registrationForm.value)
+      .then(resp => this.router.navigate(["login"]))
+      .catch(err => {
+        console.log(err);
+        window.alert("Error Occured!!");
+      });
   }
 
   required(control: FormControl): { [s: string]: boolean } {
