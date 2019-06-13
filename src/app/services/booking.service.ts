@@ -1,10 +1,9 @@
-const CANCEL_BOOKING_API = "http://localhost:9051/booking/cancle";
-const COMPLETE_ADMIN_BOOKING_API =
-  "http://localhost:9051/booking/admin/complete";
-const CANCEL_ADMIN_BOOKING_API = "http://localhost:9051/booking/admin/cancle";
-const GET_ADMIN_BOOKING_API = "http://localhost:9051/booking/admin/all";
-const GET_BOOKING_API = "http://localhost:9051/booking/get";
-const NEW_BOOKING_API = "http://localhost:9051/booking/new";
+const CANCEL_BOOKING_API = "/bookingApi/cancle";
+const COMPLETE_ADMIN_BOOKING_API = "/bookingApi/admin/complete";
+const CANCEL_ADMIN_BOOKING_API = "/bookingApi/admin/cancle";
+const GET_ADMIN_BOOKING_API = "/bookingApi/admin/all";
+const GET_BOOKING_API = "/bookingApi/get";
+const NEW_BOOKING_API = "/bookingApi/new";
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";

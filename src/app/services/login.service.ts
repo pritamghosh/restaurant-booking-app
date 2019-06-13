@@ -10,7 +10,7 @@ export class LoginService {
   login(login: any): Promise<any> {
     this.auth.signOut();
     return new Promise((resolve, reject) => {
-      this.http.post("http://localhost:9052/login", login).subscribe(
+      this.http.post("/user/login", login).subscribe(
         resp => {
           this.auth.savetoContext(resp);
           resolve(true);

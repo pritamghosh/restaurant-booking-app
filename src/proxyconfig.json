@@ -1,0 +1,17 @@
+{
+  "/user": {
+    "target": "http://localhost:9052",
+    "Secure": false,
+    "changeOrigin": true
+  },
+  "/restaurantApi": {
+    "target": "http://localhost:9053/restaurant",
+    "Secure": false,
+    "changeOrigin": true
+  },
+  "/booking": {
+    "target": "http://localhost:9052",
+    "Secure": false,
+    "changeOrigin": true
+  }
+}

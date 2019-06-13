@@ -1,9 +1,9 @@
-const SEARCH_API = "http://localhost:9053/restaurant/search";
-const ALL_API = "http://localhost:9053/restaurant/all";
-const CREATE_RESTAURANT_API = "http://localhost:9053/restaurant/add";
-const UPDATE_RESTAURANT_API = "http://localhost:9053/restaurant/update";
-const DELETE_RESTAURANT_API = "http://localhost:9053/restaurant/delete";
-const FETCH_RESTAURANT_API = "http://localhost:9053/restaurant/fetchRestaurant";
+const SEARCH_API = "/restaurantUrl/search";
+const ALL_API = "/restaurantUrl/all";
+const CREATE_RESTAURANT_API = "/restaurantUrl/add";
+const UPDATE_RESTAURANT_API = "/restaurantUrl/update";
+const DELETE_RESTAURANT_API = "/restaurantUrl/delete";
+const FETCH_RESTAURANT_API = "/restaurantUrl/fetchRestaurant";
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";

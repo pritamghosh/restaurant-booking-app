@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { reject } from "q";
 
 @Injectable()
 export class RegistrationService {
